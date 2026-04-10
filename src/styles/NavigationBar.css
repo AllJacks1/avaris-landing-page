@@ -40,21 +40,13 @@
 }
 
 .navbar__logo-icon {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(
-    135deg,
-    var(--avaris-red) 0%,
-    var(--avaris-red-dark) 100%
-  );
-  color: var(--avaris-white);
+  width: 120px;
+  height: 50px;
   font-weight: var(--font-weight-bold);
   font-size: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-red);
 }
 
 .navbar__logo-text {

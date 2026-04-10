@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "../styles/NavigationBar.css";
+import logo from "../assets/avaris_logo_landscape.png";
 
 const Navigationbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,7 +41,7 @@ const Navigationbar = () => {
           className="navbar__logo"
           onClick={(e) => scrollToSection(e, "#home")}
         >
-          <span className="navbar__logo-icon">A</span>
+          <span className="navbar__logo-icon"><img src={logo}className="navbar__logo-icon"></img></span>
           <span className="navbar__logo-text">
             Avaris <span className="navbar__logo-accent">Sales</span>
           </span>
