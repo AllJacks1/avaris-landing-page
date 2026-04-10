@@ -41,7 +41,7 @@ const Navigationbar = () => {
           className="navbar__logo"
           onClick={(e) => scrollToSection(e, "#home")}
         >
-          <span className="navbar__logo-icon"><img src={logo}className="navbar__logo-icon"></img></span>
+          <span className="navbar__logo-icon"><img src={logo} alt="Avaris Sales Solutions" className="navbar__logo-icon"></img></span>
           <span className="navbar__logo-text">
             Avaris <span className="navbar__logo-accent">Sales</span>
           </span>

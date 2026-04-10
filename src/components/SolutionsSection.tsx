@@ -1,7 +1,11 @@
 import { Briefcase, Building2, TrendingUp, Check } from "lucide-react";
 import "../styles/SolutionsSection.css";
+import { useState } from "react";
+import ContactModal from "./ContactModal";
 
 function SolutionsSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const audiences = [
     {
       icon: Building2,
@@ -59,115 +63,137 @@ function SolutionsSection() {
     },
   ];
 
+  const openModal = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsModalOpen(true);
+  };
+
   return (
-    <section id="solutions" className="solutions-section section">
-      <div className="solutions-container">
-        {/* Who This Is For */}
-        <div className="section-header">
-          <span className="section-tagline">Who This Is For</span>
-          <h2 className="section-title">Built For Growing Businesses</h2>
-        </div>
+    <>
+      <section id="solutions" className="solutions-section section">
+        <div className="solutions-container">
+          {/* Who This Is For */}
+          <div className="section-header">
+            <span className="section-tagline">Who This Is For</span>
+            <h2 className="section-title">Built For Growing Businesses</h2>
+          </div>
 
-        <div className="solutions-grid">
-          {audiences.map((audience, index) => {
-            const IconComponent = audience.icon;
-            return (
-              <div key={index} className="solution-card">
-                <div className="solution-icon">
-                  <IconComponent size={28} strokeWidth={2} />
+          <div className="solutions-grid">
+            {audiences.map((audience, index) => {
+              const IconComponent = audience.icon;
+              return (
+                <div key={index} className="solution-card">
+                  <div className="solution-icon">
+                    <IconComponent size={28} strokeWidth={2} />
+                  </div>
+                  <h3 className="solution-title">{audience.title}</h3>
+                  <p className="solution-subtitle">{audience.subtitle}</p>
+                  <p className="solution-description">{audience.description}</p>
                 </div>
-                <h3 className="solution-title">{audience.title}</h3>
-                <p className="solution-subtitle">{audience.subtitle}</p>
-                <p className="solution-description">{audience.description}</p>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Featured Offer */}
-        <div className="featured-section">
-          <div className="featured-header">
-            <span className="featured-eyebrow">Featured Offer</span>
-            <h3 className="featured-main-title">Try the Avaris Sales System</h3>
+              );
+            })}
           </div>
 
-          <div className="featured-grid">
-            <div className="featured-left">
-              <h4 className="featured-title">Excel Fast Trial Package</h4>
-              <p className="featured-description">
-                Experience the Avaris system with our Excel Fast Trial Package.
-              </p>
-              <div className="featured-price">
-                ₱9,999 <span>Trial Package</span>
-              </div>
-              <p className="package-note">
-                Perfect for businesses that want to see how a structured sales
-                system improves results.
-              </p>
-              <p className="setup-note">Setup within 48 hours.</p>
-              <button className="btn-cta">Start Your Trial Today</button>
+          {/* Featured Offer */}
+          <div className="featured-section">
+            <div className="featured-header">
+              <span className="featured-eyebrow">Featured Offer</span>
+              <h3 className="featured-main-title">
+                Try the Avaris Sales System
+              </h3>
             </div>
 
-            <div className="featured-right">
-              <div className="package-card">
-                <h4 className="package-title">Includes:</h4>
-                <ul className="package-list">
-                  {packageFeatures.map((feature, index) => (
-                    <li key={index}>
-                      <Check size={18} strokeWidth={3} className="check-icon" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Why Avaris */}
-        <div className="why-section">
-          <div className="why-header">
-            <span className="section-tagline">Why Avaris</span>
-            <h3 className="why-title">
-              Why Businesses Choose Avaris Sales Solutions
-            </h3>
-          </div>
-
-          <div className="why-grid">
-            {reasons.map((reason, index) => (
-              <div key={index} className="why-card">
-                <h4 className="why-card-title">{reason.title}</h4>
-                <p className="why-card-text">
-                  {reason.hasStrong ? (
-                    <>
-                      {reason.title === "Structured Sales Processes" ? (
-                        <>
-                          Sales should never rely on luck.{" "}
-                          <strong>
-                            We build structured systems that turn effort into
-                            predictable results.
-                          </strong>
-                        </>
-                      ) : (
-                        <>
-                          We don't just support your sales.{" "}
-                          <strong>
-                            We help you build stronger sales foundations that
-                            support long-term growth.
-                          </strong>
-                        </>
-                      )}
-                    </>
-                  ) : (
-                    reason.description
-                  )}
+            <div className="featured-grid">
+              <div className="featured-left">
+                <h4 className="featured-title">Excel Fast Trial Package</h4>
+                <p className="featured-description">
+                  Experience the Avaris system with our Excel Fast Trial
+                  Package.
                 </p>
+                <div className="featured-price">
+                  ₱9,999 <span>Trial Package</span>
+                </div>
+                <p className="package-note">
+                  Perfect for businesses that want to see how a structured sales
+                  system improves results.
+                </p>
+                <p className="setup-note">Setup within 48 hours.</p>
+                <button className="btn-cta" onClick={openModal}>
+                  Start Your Trial Today
+                </button>
               </div>
-            ))}
+
+              <div className="featured-right">
+                <div className="package-card">
+                  <h4 className="package-title">Includes:</h4>
+                  <ul className="package-list">
+                    {packageFeatures.map((feature, index) => (
+                      <li key={index}>
+                        <Check
+                          size={18}
+                          strokeWidth={3}
+                          className="check-icon"
+                        />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Why Avaris */}
+          <div className="why-section">
+            <div className="why-header">
+              <span className="section-tagline">Why Avaris</span>
+              <h3 className="why-title">
+                Why Businesses Choose Avaris Sales Solutions
+              </h3>
+            </div>
+
+            <div className="why-grid">
+              {reasons.map((reason, index) => (
+                <div key={index} className="why-card">
+                  <h4 className="why-card-title">{reason.title}</h4>
+                  <p className="why-card-text">
+                    {reason.hasStrong ? (
+                      <>
+                        {reason.title === "Structured Sales Processes" ? (
+                          <>
+                            Sales should never rely on luck.{" "}
+                            <strong>
+                              We build structured systems that turn effort into
+                              predictable results.
+                            </strong>
+                          </>
+                        ) : (
+                          <>
+                            We don't just support your sales.{" "}
+                            <strong>
+                              We help you build stronger sales foundations that
+                              support long-term growth.
+                            </strong>
+                          </>
+                        )}
+                      </>
+                    ) : (
+                      reason.description
+                    )}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <ContactModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Start Your Free Trial Today"
+        description="Fill out the form below and we'll get back to you within 24 hours to set up your trial."
+      />
+    </>
   );
 }
 

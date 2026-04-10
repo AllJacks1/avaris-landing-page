@@ -22,6 +22,7 @@ const ContactSection: React.FC = () => {
       value: "Pines Place, Pioneer Drive",
       subValue: "Bajada, Davao City",
       note: "Near Bluepost Boiling Crabs & Shrimps",
+      href: "https://maps.app.goo.gl/5MbCRRe86jG3j6A29",
     },
     {
       icon: Clock,
